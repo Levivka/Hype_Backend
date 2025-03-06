@@ -1,5 +1,6 @@
 package com.example.romich.Controllers;
 
+import com.example.romich.Models.PreOrderProduct;
 import com.example.romich.Models.Product;
 import com.example.romich.Services.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -12,16 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/api/product")
-public class ProductController {
-    private final ProductService<Product> productService;
+@RequestMapping("/api/pre-order-product")
+public class PreOrderProductController {
+    private final ProductService<PreOrderProduct> productService;
     @GetMapping
     public ResponseEntity<?> createProduct() {
         return productService.listProducts();
     }
 
     @PostMapping
-    public ResponseEntity<?> addProduct(Product product) {
+    public ResponseEntity<?> addProduct(PreOrderProduct product) {
         return productService.createProduct(product);
     }
 
