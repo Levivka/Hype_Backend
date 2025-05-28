@@ -20,6 +20,7 @@ public class ProductImpl implements ProductService<Product> {
         if (productRepository.findById(product.getId()) != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Product already exists");
         }
+        System.out.println(product);
         productRepository.save(product);
         if (productRepository.findById(product.getId()) != null) {
             return ResponseEntity.ok(product);

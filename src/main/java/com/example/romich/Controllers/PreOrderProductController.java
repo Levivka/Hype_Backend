@@ -6,10 +6,7 @@ import com.example.romich.Services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -17,17 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PreOrderProductController {
     private final ProductService<PreOrderProduct> productService;
     @GetMapping
-    public ResponseEntity<?> createProduct() {
+    public ResponseEntity<?> listProducts() {
         return productService.listProducts();
     }
 
     @PostMapping
-    public ResponseEntity<?> addProduct(PreOrderProduct product) {
+    public ResponseEntity<?> addProduct(@RequestBody PreOrderProduct product) {
         return productService.createProduct(product);
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteProduct(long id) {
+    public ResponseEntity<?> deleteProduct(@RequestParam long id) {
         return productService.deleteProduct(id);
     }
 

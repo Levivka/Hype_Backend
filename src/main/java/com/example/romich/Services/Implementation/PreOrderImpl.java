@@ -21,6 +21,7 @@ public class PreOrderImpl implements ProductService<PreOrderProduct> {
         if(productRepository.findById(product.getId()) != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Pre-order product already exists");
         }
+        System.out.println(product);
         productRepository.save(product);
         if (productRepository.findById(product.getId()) != null) {
             return ResponseEntity.ok(product);

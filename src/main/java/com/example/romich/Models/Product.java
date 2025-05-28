@@ -11,4 +11,6 @@ public class Product {
     private double price;
     private List<Short> sizes;
     private String type;
+    private String material;
+    private String imageURL;
 }
