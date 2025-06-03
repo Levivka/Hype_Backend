@@ -5,8 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface ProductService<T extends Product> {
-    public ResponseEntity<?> createProduct(T product);
-    public ResponseEntity<?> deleteProduct(long id);
-    public ResponseEntity<?> listProducts();
+public interface ProductService {
+     ResponseEntity<?> createProduct(Product product);
+     ResponseEntity<?> deleteProduct(long id);
+     ResponseEntity<?> listProducts();
 }

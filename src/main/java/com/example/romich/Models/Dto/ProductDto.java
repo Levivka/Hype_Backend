@@ -1,13 +1,11 @@
-package com.example.romich.Models;
+package com.example.romich.Models.Dto;
 
 import lombok.Data;
 
-import java.lang.annotation.Inherited;
 import java.util.List;
 
 @Data
-public class Product {
-    private long id;
+public class ProductDto {
     private String name;
     private double price;
     private List<Short> sizes;

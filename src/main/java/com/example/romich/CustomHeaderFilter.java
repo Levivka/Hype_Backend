@@ -13,7 +13,8 @@ public class CustomHeaderFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-        httpResponse.setHeader("Access-Control-Expose-Headers", "*");
+        httpResponse.setHeader("Access-Control-Allow-Origin", "*");
+        httpResponse.setHeader("Vary", "Access-Control-Allow-Origin");
         chain.doFilter(request, response);
     }
 }

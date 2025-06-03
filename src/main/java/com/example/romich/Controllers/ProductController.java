@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/product")
 public class ProductController {
-    private final ProductService<Product> productService;
+    private final ProductService productService;
     @GetMapping
     public ResponseEntity<?> listAllProducts() {
         return productService.listProducts();

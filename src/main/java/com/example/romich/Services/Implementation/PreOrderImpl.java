@@ -4,6 +4,7 @@ import com.example.romich.Models.PreOrderProduct;
 import com.example.romich.Models.Product;
 import com.example.romich.Repositories.PreOrderProductRepository;
 import com.example.romich.Repositories.ProductRepository;
+import com.example.romich.Services.PreOrderProductService;
 import com.example.romich.Services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,16 +15,17 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PreOrderImpl implements ProductService<PreOrderProduct> {
+public class PreOrderImpl implements PreOrderProductService {
     private final PreOrderProductRepository productRepository;
+
     @Override
-    public ResponseEntity<?> createProduct(PreOrderProduct product) {
-        if(productRepository.findById(product.getId()) != null) {
+    public ResponseEntity<?> createPreOrderProduct(PreOrderProduct product) {
+        if(productRepository.findById(product.getId()).isPresent()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Pre-order product already exists");
         }
         System.out.println(product);
         productRepository.save(product);
-        if (productRepository.findById(product.getId()) != null) {
+        if (productRepository.findById(product.getId()).isPresent()) {
             return ResponseEntity.ok(product);
         }
         else {
@@ -32,7 +34,7 @@ public class PreOrderImpl implements ProductService<PreOrderProduct> {
     }
 
     @Override
-    public ResponseEntity<?> deleteProduct(long id) {
+    public ResponseEntity<?> deletePreOrderProduct(long id) {
         if (productRepository.findById(id) == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No pre-order product found with id " + id);
         }
@@ -42,7 +44,7 @@ public class PreOrderImpl implements ProductService<PreOrderProduct> {
     }
 
     @Override
-    public ResponseEntity<?> listProducts() {
+    public ResponseEntity<?> listPreOrderProducts() {
         List<PreOrderProduct> products = productRepository.findAll();
         if (products.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No products found");
